@@ -1,24 +1,61 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| mail address       | string | null: false |
+| password           | string | null: false |
+| name(first name)   | string | null: false |
+| name(last name)    | string | null: false |  
 
-* Ruby version
+has_many :products
+has_many :purchase records
 
-* System dependencies
+## products テーブル
 
-* Configuration
+| Column               | Type       | Options           |
+| -------------------- | ---------- | ----------------- |
+| product name         | string     | null: false       |
+| name(first name)     | references | foreign_key: true |
+| name(last name)      | references | foreign_key: true |
+| image                | string     |    null: false    |
+| category             | string     |    null: false    |
+| product explanation  | string     |    null: false    |
+| product status       | string     |    null: false    |
+| product price        | string     |    null: false    |
+| delivery information | string     |    null: false    |
+| delivery place       | string     |    null: false    |
+| delivery time        | string     |    null: false    |
 
-* Database creation
+belongs_to :users
+belongs_to :places
 
-* Database initialization
 
-* How to run the test suite
+## places テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column            | Type   | Options            |
+| ----------------- | -------| ------------------ |
+| card information  | string |    null: false     |
+| card limit        | string |    null: false     |
+| security code     | string |    null: false     |
+| postal code       | string |    null: false     |
+| prefectures       | string |    null: false     |
+| city              | string |    null: false     |
+| address           | string |    null: false     |
+| building name     | string |                    |
+| telephone number  | string |    null: false     |
 
-* Deployment instructions
+belongs_to :products
 
-* ...
+
+
+## purchase records テーブル
+
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ------------------|
+| name(first name) | references | foreign_key: true |
+| name(last name)  | references | foreign_key: true |
+
+has_many :users
