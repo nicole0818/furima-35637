@@ -27,37 +27,34 @@ has_many :purchase records
 | product_status_id       | integer    |    null: false    |
 | product_price           | integer    |    null: false    |
 | delivery_information_id | integer    |    null: false    |
-| delivery_place_id       | integer    |    null: false    |
+| prefectures_id          | integer    |    null: false    |
 | delivery_time_id        | integer    |    null: false    |
 
 belongs_to :user
 belongs_to :place
-belongs_to :purchase record
-
 
 ## places テーブル
 
 | Column            | Type      | Options            |
 | ----------------- | ----------| ------------------ |
-|  postal_code      | integer   |    null: false     |
+| postal_code       | string    |    null: false     |
 | prefectures_id    | integer   |    null: false     |
 | city              | string    |    null: false     |
 | address           | string    |    null: false     |
 | building_name     | string    |                    |
 | telephone_number  | string    |    null: false     |
-| purchase_records  | references| foreign_key: true  |    
+| purchase_record   | references| foreign_key: true  |    
 
 belongs_to :product
-belongs_to :purchase record
 
 
 
-## purchase records テーブル
+## purchase_records テーブル
 
 | Column        | Type       | Options           |
 | ------------- | ---------- | ------------------|
 | user          | references | foreign_key: true |
 | product       | references | foreign_key: true |
 
-has_many :users
+belongs_to :user
 has_many :products
