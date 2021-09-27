@@ -47,7 +47,7 @@ has_one :purchase_record
 | telephone_number  | string    |    null: false     |
 | purchase_record   | references| foreign_key: true,null: false  |    
 
-belongs :purchase_record
+belongs_to :purchase_record
 
 
 
