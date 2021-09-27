@@ -14,14 +14,14 @@
 | birthday           | date   | null: false              |
 
 has_many :products
-has_many :purchase records
+has_many :purchase_records
 
 ## products テーブル
 
 | Column                  | Type       | Options           |
 | ----------------------- | ---------- | ----------------- |
-| product name            | string     | null: false       |
-| user                    | references | foreign_key: true |
+| product_name            | string     | null: false       |
+| user                    | references | foreign_key: true,null: false |
 | category_id             | integer    |    null: false    |
 | product_explanation     | text       |    null: false    |
 | product_status_id       | integer    |    null: false    |
@@ -31,7 +31,7 @@ has_many :purchase records
 | delivery_time_id        | integer    |    null: false    |
 
 belongs_to :user
-belongs_to :place
+
 
 ## places テーブル
 
@@ -43,9 +43,9 @@ belongs_to :place
 | address           | string    |    null: false     |
 | building_name     | string    |                    |
 | telephone_number  | string    |    null: false     |
-| purchase_record   | references| foreign_key: true  |    
+| purchase_record   | references| foreign_key: true,null: false  |    
 
-belongs_to :product
+belongs_to :purchase_record
 
 
 
@@ -53,8 +53,9 @@ belongs_to :product
 
 | Column        | Type       | Options           |
 | ------------- | ---------- | ------------------|
-| user          | references | foreign_key: true |
-| product       | references | foreign_key: true |
+| user          | references | foreign_key: true,null: false |
+| product       | references | foreign_key: true,null: false |
 
 belongs_to :user
-has_many :products
+belongs_to :products
+belongs_to :places
