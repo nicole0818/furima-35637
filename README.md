@@ -31,7 +31,7 @@ has_many :purchase_records
 | delivery_time_id        | integer    |    null: false    |
 
 belongs_to :user
-has_one :purchase_records
+has_one :purchase_record
 
 
 
@@ -47,7 +47,7 @@ has_one :purchase_records
 | telephone_number  | string    |    null: false     |
 | purchase_record   | references| foreign_key: true,null: false  |    
 
-has_one :purchase_record
+belongs :purchase_record
 
 
 
@@ -60,4 +60,4 @@ has_one :purchase_record
 
 belongs_to :user
 belongs_to :product
-belongs_to :place
+has_one :place
