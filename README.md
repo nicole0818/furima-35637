@@ -2,52 +2,49 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| mail address       | string | null: false |
-| password           | string | null: false |
-| name(first name)   | string | null: false |
-| name(last name)    | string | null: false |  
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false              |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false              |
+| name(first name)   | string | null: false              |
+| name(last name)    | string | null: false              |  
+| birthday           | string | null: false              |
 
 has_many :products
 has_many :purchase records
 
 ## products テーブル
 
-| Column               | Type       | Options           |
-| -------------------- | ---------- | ----------------- |
-| product name         | string     | null: false       |
-| name(first name)     | references | foreign_key: true |
-| name(last name)      | references | foreign_key: true |
-| image                | string     |    null: false    |
-| category             | string     |    null: false    |
-| product explanation  | string     |    null: false    |
-| product status       | string     |    null: false    |
-| product price        | string     |    null: false    |
-| delivery information | string     |    null: false    |
-| delivery place       | string     |    null: false    |
-| delivery time        | string     |    null: false    |
+| Column                  | Type       | Options           |
+| ----------------------- | ---------- | ----------------- |
+| product name            | string     | null: false       |
+| user_id                 | references | foreign_key: true |
+| category_id             | integer    |    null: false    |
+| product explanation     | text       |    null: false    |
+| product status_id       | integer    |    null: false    |
+| product price           | integer    |    null: false    |
+| delivery information_id | integer    |    null: false    |
+| delivery place_id       | integer    |    null: false    |
+| delivery time_id        | integer    |    null: false    |
 
-belongs_to :users
-belongs_to :places
+belongs_to :user
+belongs_to :place
+belongs_to :purchase record
 
 
 ## places テーブル
 
 | Column            | Type   | Options            |
 | ----------------- | -------| ------------------ |
-| card information  | string |    null: false     |
-| card limit        | string |    null: false     |
-| security code     | string |    null: false     |
-| postal code       | string |    null: false     |
-| prefectures       | string |    null: false     |
+| prefectures_id    | integer|    null: false     |
 | city              | string |    null: false     |
 | address           | string |    null: false     |
 | building name     | string |                    |
 | telephone number  | string |    null: false     |
 
-belongs_to :products
+belongs_to :product
+belongs_to :purchase record
 
 
 
@@ -55,7 +52,8 @@ belongs_to :products
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ------------------|
-| name(first name) | references | foreign_key: true |
-| name(last name)  | references | foreign_key: true |
+| user_id          | references | foreign_key: true |
+| product_id       | references | foreign_key: true |
 
 has_many :users
+has_many :products
