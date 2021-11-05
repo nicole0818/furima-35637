@@ -41,11 +41,15 @@ it "first_name_kanjiが空では登録できない" do
   expect(@user.errors.full_messages).to include("First name kanji can't be blank")
 end
 
-it "last_name_kanjiとfirst_name_kanjiはカタカナでは登録できない" do
-  @user.last_name_kanji = 'タナカ'
-  @user.first_name_kanji = 'イチロウ'
+it "last_name_kanjiはカタカナでは登録できない" do
+  @user.last_name_kanji = 'tanaka'
   @user.valid?
-  expect(@user.errors.full_messages).to include("Last name kanji に漢字を使用してください", "First name kanji に漢字を使用してください")
+  expect(@user.errors.full_messages).to include("Last name kanji に漢字を使用してください")
+end
+it "first_name_kanjiはカタカナでは登録できない" do
+  @user.first_name_kanji = 'itirou'
+  @user.valid?
+  expect(@user.errors.full_messages).to include("First name kanji に漢字を使用してください")
 end
 
 
@@ -61,11 +65,16 @@ it "first_name_kanaが空では登録できない" do
   expect(@user.errors.full_messages).to include("First name kana can't be blank")
 end
 
-it "last_name_kanaとfirst_name_kanaは漢字では登録できない" do
+it "last_name_kanaは漢字では登録できない" do
   @user.last_name_kana = '田中'
+  @user.valid?
+  expect(@user.errors.full_messages).to include("Last name kana にカタカナを使用してください")
+end
+
+it "first_name_kanaは漢字では登録できない" do
   @user.first_name_kana = '一朗'
   @user.valid?
-  expect(@user.errors.full_messages).to include("Last name kana にひらがなを使用してください", "First name kana にひらがなを使用してください")
+  expect(@user.errors.full_messages).to include("First name kana にカタカナを使用してください")
 end
 
 it "birthdayが空では登録できない" do

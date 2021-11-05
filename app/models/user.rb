@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
    validates :nickname,presence: true     
 
-   with_options presence: true, format: { with: /\A[一-龥々ー]+\z/, message: 'に漢字を使用してください' } do
+   with_options presence: true, format: { with: /\A[あ-んァ-ヶ一-龥々ー]+\z/, message: 'に漢字を使用してください' } do
     validates :last_name_kanji
     validates :first_name_kanji
   end
   
-   with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'にひらがなを使用してください' } do
+   with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'にカタカナを使用してください' } do
     validates :last_name_kana
     validates :first_name_kana
   end
