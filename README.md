@@ -20,6 +20,7 @@ has_many :purchase_records
 
 | Column                  | Type       | Options           |
 | ----------------------- | ---------- | ----------------- |
+| image                   | string     | null: false       |
 | product_name            | string     | null: false       |
 | user                    | references | foreign_key: true,null: false |
 | category_id             | integer    |    null: false    |
