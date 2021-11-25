@@ -1,11 +1,11 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_one_attached :image
-  belongs_to :category,:product_status
-
+  belongs_to :category,:product_status,:delivery_information,:prefectures,:delivery_time
+  belongs_to :user
    #空の投稿を保存できないようにする
    validates :image,:product_name,:product_explanation,:product_price, presence: true
-   validates :product_price,numericality:{ greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 ,message:"は300円以上9999999円以下かつ、半角数字で入力してください"}
+   validates :product_price,numericality:{ greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 ,only_integer: true,message:"は300円以上9999999円以下かつ、半角数字で入力してください"}
    with_options presence: true, format: { with: /\A[0-9]+\z/ } do
     validates :product_price
   end
