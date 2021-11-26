@@ -149,12 +149,7 @@
             <%= product.product_name %>
           </h3>
           <div class='item-price'>
-            <span><%= product.product_price %>円<br>
-            <%if product.delivery_information_id==2%>
-             <%= '着払い(購入者負担)' %>
-             <%else%>
-             <%= '送料込み(出品者負担)' %>
-             <%end%>
+            <span><%= product.product_price %>円<br><%= product.delivery_information.name %>
              </span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
