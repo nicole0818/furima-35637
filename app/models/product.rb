@@ -1,7 +1,11 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_one_attached :image
-  belongs_to :category,:product_status,:delivery_information,:prefectures,:delivery_time
+  belongs_to :category
+  belongs_to :product_status
+  belongs_to :delivery_information
+  belongs_to :prefectures
+  belongs_to :delivery_time
   belongs_to :user
    #空の投稿を保存できないようにする
    validates :image,:product_name,:product_explanation,:product_price, presence: true
