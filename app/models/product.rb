@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :prefectures
   belongs_to :delivery_time
   belongs_to :user
+  has_one :purchase_record
    #空の投稿を保存できないようにする
    validates :image,:product_name,:product_explanation,:product_price, presence: true
    validates :product_price,numericality:{ greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 ,only_integer: true,message:"は300円以上9999999円以下かつ、半角数字で入力してください"}

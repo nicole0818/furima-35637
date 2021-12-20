@@ -136,7 +136,7 @@
           <%= image_tag product.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
-          <%if   #購入機能実装時に記入             %>
+          <%if  product.purchase_record.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
