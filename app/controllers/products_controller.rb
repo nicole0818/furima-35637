@@ -28,7 +28,10 @@ class ProductsController < ApplicationController
 
   def edit
    
-   if current_user.id == @product.user.id
+   if @product.purchase_record.present?
+    redirect_to root_path
+   elsif
+    current_user.id == @product.user.id
    else
     redirect_to root_path
    end
