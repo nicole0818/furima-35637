@@ -4,7 +4,9 @@ RSpec.describe PurchaseRecordPlace, type: :model do
   describe '商品購入機能' do
     before do
       user = FactoryBot.create(:user)
-      @purchase_record_place = FactoryBot.build(:purchase_record_place, user_id: user.id)
+      product = FactoryBot.create(:product)
+      @purchase_record_place = FactoryBot.build(:purchase_record_place, user_id: user.id,product_id: product.id)
+      sleep(1)
     end
 
     context '内容に問題ない場合' do
@@ -52,6 +54,12 @@ RSpec.describe PurchaseRecordPlace, type: :model do
       end
       it 'telephone_numberは12桁以上の数値だと保存できないこと' do
         @purchase_record_place.telephone_number = '123456789012'
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it 'telephone_numberは9桁以下の数値だと保存できないこと' do
+        @purchase_record_place.telephone_number = '123456789'
         @purchase_record_place.valid?
         expect(@purchase_record_place.errors.full_messages).to include("Telephone number is invalid")
       end

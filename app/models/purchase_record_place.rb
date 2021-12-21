@@ -4,7 +4,7 @@ class PurchaseRecordPlace
   validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   validates :prefectures_id,:city,:address,:telephone_number,presence: true
   validates :prefectures_id, numericality: { other_than: 1 ,message:"can't be blank"}
-  validates :telephone_number, format: {with: /\A[0-9]{11}\z/ }
+  validates :telephone_number, format: {with: /\A[0-9]{10,11}\z/ }
   validates :token,:user_id,:product_id, presence: true
 
   def save

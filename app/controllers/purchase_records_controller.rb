@@ -5,7 +5,7 @@ class PurchaseRecordsController < ApplicationController
   def index
     @purchase_record_place = PurchaseRecordPlace.new
   
-    if current_user.id == @product.user.id
+    if current_user.id == @product.user.id || @product.purchase_record.present?
       redirect_to root_path
      end
   end
