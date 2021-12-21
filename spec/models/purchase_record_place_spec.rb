@@ -56,11 +56,42 @@ RSpec.describe PurchaseRecordPlace, type: :model do
         expect(@purchase_record_place.errors.full_messages).to include("Telephone number is invalid")
       end
 
+      it 'telephone_numberは英数混合では保存できないこと' do
+        @purchase_record_place.telephone_number = '1a3b5c7d9e1f'
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("Telephone number is invalid")
+      end
+
       it "tokenが空では登録できないこと" do
         @purchase_record_place.token = nil
         @purchase_record_place.valid?
         expect(@purchase_record_place.errors.full_messages).to include("Token can't be blank")
       end
+
+      it "user_idが空では登録できないこと" do
+        @purchase_record_place.user_id = nil
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "product_idが空では登録できないこと" do
+        @purchase_record_place.product_id = nil
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("Product can't be blank")
+      end
+
+      it 'userが紐付いていないと保存できないこと' do
+        @purchase_record_place.user_id = nil
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'productが紐付いていないと保存できないこと' do
+        @purchase_record_place.product_id = nil
+        @purchase_record_place.valid?
+        expect(@purchase_record_place.errors.full_messages).to include("Product can't be blank")
+      end
+
     end
   end
 end

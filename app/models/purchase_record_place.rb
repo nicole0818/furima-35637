@@ -5,7 +5,7 @@ class PurchaseRecordPlace
   validates :prefectures_id,:city,:address,:telephone_number,presence: true
   validates :prefectures_id, numericality: { other_than: 1 ,message:"can't be blank"}
   validates :telephone_number, format: {with: /\A[0-9]{11}\z/ }
-  validates :token, presence: true
+  validates :token,:user_id,:product_id, presence: true
 
   def save
     purchase_record = PurchaseRecord.create(product_id: product_id, user_id: user_id)
