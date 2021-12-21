@@ -76,11 +76,7 @@ RSpec.describe PurchaseRecordPlace, type: :model do
         expect(@purchase_record_place.errors.full_messages).to include("Token can't be blank")
       end
 
-      it "user_idが空では登録できないこと" do
-        @purchase_record_place.user_id = nil
-        @purchase_record_place.valid?
-        expect(@purchase_record_place.errors.full_messages).to include("User can't be blank")
-      end
+    
 
       it "product_idが空では登録できないこと" do
         @purchase_record_place.product_id = nil
