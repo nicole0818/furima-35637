@@ -12,7 +12,7 @@ class Product < ApplicationRecord
    validates :image,:product_name,:product_explanation,:product_price, presence: true
    validates :product_price,numericality:{ greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 ,only_integer: true,message:"は300円以上9999999円以下かつ、半角数字で入力してください"}
    with_options presence: true, format: { with: /\A[0-9]+\z/ } do
-    validates :product_price
+  
   end
 
    #ジャンルの選択が「--」の時は保存できないようにする
